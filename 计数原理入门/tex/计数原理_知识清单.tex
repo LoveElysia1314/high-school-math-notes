@@ -1,0 +1,120 @@
+\documentclass[10pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1.5cm}
+\usepackage{enumitem}
+
+\title{计数原理知识清单}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{两个基本计数原理}
+
+\begin{itemize}
+\item \textbf{分类加法原理}
+  \begin{itemize}
+  \item 关键词：分类、加法
+  \item 逻辑关系：或（任一类别完成即可）
+  \item 运算：加法 \(N = m_1 + \dots + m_k\)
+  \item 适用情形：互斥的几类方案
+  \end{itemize}
+\item \textbf{分步乘法原理}
+  \begin{itemize}
+  \item 关键词：分步、乘法
+  \item 逻辑关系：且（所有步骤缺一不可）
+  \item 运算：乘法 \(N = m_1 \times \dots \times m_k\)
+  \item 适用情形：依次完成的独立步骤
+  \end{itemize}
+\end{itemize}
+
+\begin{quote}
+\textbf{易错提醒}：加法原理要求各类\textbf{互斥}（不重复）；乘法原理要求各步\textbf{独立}（方法数不受之前步骤影响）。
+\end{quote}
+
+\section{排列与组合}
+
+\begin{itemize}
+\item \textbf{排列}
+  \begin{itemize}
+  \item 定义：从 \(n\) 个不同元素中取 \(m\) 个排成一列
+  \item 顺序是否重要：\textbf{重要}
+  \item 符号：\(A_n^m\) 或 \(P_n^m\)
+  \item 公式：\(A_n^m = n(n-1)\cdots(n-m+1) = \frac{n!}{(n-m)!}\)
+  \item 关系：\(A_n^m = C_n^m \times m!\)
+  \end{itemize}
+\item \textbf{组合}
+  \begin{itemize}
+  \item 定义：从 \(n\) 个不同元素中取 \(m\) 个作为一组
+  \item 顺序是否重要：\textbf{不重要}
+  \item 符号：\(C_n^m\) 或 \(\binom{n}{m}\)
+  \item 公式：\(C_n^m = \frac{A_n^m}{m!} = \frac{n!}{m!(n-m)!}\)
+  \item 关系：\(C_n^m = \frac{A_n^m}{m!}\)
+  \end{itemize}
+\end{itemize}
+
+\textbf{特殊规定}：
+\begin{itemize}
+\item \(0! = 1\)，\(A_n^0 = 1\)，\(C_n^0 = 1\)
+\item \(A_n^n = n!\)，\(C_n^n = 1\)
+\item 组合数性质：\(C_n^m = C_n^{n-m}\)，\(C_n^m = C_{n-1}^{m-1} + C_{n-1}^{m}\)（杨辉三角）
+\end{itemize}
+
+\section{常用符号体系}
+
+\begin{itemize}
+\item \(n!\)（\(n\) 的阶乘）：\(n \times (n-1) \times \cdots \times 2 \times 1\)，例 \(5! = 120\)
+\item \(A_n^m\)（排列数）：从 \(n\) 个不同元素中取 \(m\) 个排列的种数，例 \(A_5^2 = 20\)
+\item \(C_n^m\)（组合数）：从 \(n\) 个不同元素中取 \(m\) 个组合的种数，例 \(C_5^2 = 10\)
+\item \(\sum\)（求和符号）：表示若干项的和，\(\sum_{i=1}^{k} a_i = a_1+\cdots+a_k\)
+\end{itemize}
+
+\section{重要数学思想}
+
+\begin{enumerate}
+\item \textbf{分类讨论}：将复杂问题划分为互斥的几类，分别计数再相加。
+  \begin{itemize}
+  \item 关键：\textbf{不重不漏}。
+  \end{itemize}
+\item \textbf{有序 vs 无序}：
+  \begin{itemize}
+  \item 题目出现“排成一排”“安排职务”“编号不同” → 排列（顺序重要）。
+  \item 题目出现“选出一组”“抽取样品”“组成集合” → 组合（顺序无关）。
+  \end{itemize}
+\item \textbf{化归思想}：将陌生问题转化为基本模型（加法、乘法、排列、组合）。
+  \begin{itemize}
+  \item 常用技巧：\textbf{先选后排}（先组合再排列）、\textbf{特殊元素优先处理}、\textbf{相邻问题用捆绑法}、\textbf{不相邻问题用插空法}。
+  \end{itemize}
+\item \textbf{正难则反}：用总数减去不符合条件的情况（补集法）。
+\end{enumerate}
+
+\section{常见易错点与提醒}
+
+\begin{itemize}
+\item \textbf{混淆加法与乘法}：问自己：“完成目标需要同时满足几个条件？”是→乘法；“有几种不同的独立途径？”是→加法。
+\item \textbf{排列组合误用}：判断顺序是否改变结果：交换两个元素后结果不同 → 排列；相同 → 组合。
+\item \textbf{数字组数问题遗漏0的限制}：首位不能为0，需要单独考虑。
+\item \textbf{重复计数或遗漏}：使用分类时检查各类是否互斥；使用分步时检查每步方法数是否恒定。
+\item \textbf{“至少”“至多”问题}：常用补集法，或直接分类（注意不重不漏）。
+\item \textbf{组合数公式中忘记除以 \(m!\)}：牢记 \(C_n^m = A_n^m / m!\) 来源于“排列中每个组合被重复计算了 \(m!\) 次”。
+\end{itemize}
+
+\section{典型问题类型快速索引}
+
+\begin{itemize}
+\item \textbf{组数问题（数字）}：优先考虑特殊位（首位、个位），分步或分类。例：用0~4组成无重复数字的四位偶数。
+\item \textbf{排队问题}：排列，注意特殊位置、相邻（捆绑）、不相邻（插空）。例：女生不相邻的排法。
+\item \textbf{选人问题}：组合，注意是否带职务（有职务则用排列）。例：选3人参加座谈会（组合）；选班长和副班长（排列）。
+\item \textbf{分配问题}：先选后排，或直接分步。例：将4本书分给3人。
+\item \textbf{几何计数}：组合（选点、选线）。例：12点中任取3点构成三角形。
+\item \textbf{涂色问题}：分步乘法，注意相邻区域颜色不同。例：用m种颜色给地图区域涂色。
+\end{itemize}
+
+\begin{quote}
+\textbf{使用建议}：可将此清单作为复习卡片，对照每个公式自己默写一遍，并回忆一道对应的典型例题。对于标记“易错”的点，建议用红笔圈出，考前重点浏览。
+\end{quote}
+
+\end{document}

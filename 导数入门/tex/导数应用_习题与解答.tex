@@ -1,0 +1,190 @@
+\documentclass[10pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1.5cm}
+\usepackage{enumitem}
+
+\title{导数应用专项练习}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{致亲爱的同学}
+本练习旨在帮助你巩固导数在切线、单调性、极值、最值以及实际问题中的应用。请先独立完成习题，再对照参考答案与思路点拨。每一道题都配有详细的解答步骤和易错点提醒，希望你能从中获得启发，真正掌握“用导数解决问题”的能力。
+
+\section{切线问题}
+\subsection{已知切点求切线方程}
+\begin{enumerate}[label=\arabic*.]
+    \item 求曲线 $y = x^3 - 2x^2 + 1$ 在点 $(1, 0)$ 处的切线方程。
+\end{enumerate}
+
+\subsection{过曲线外一点求切线方程}
+\begin{enumerate}[label=\arabic*., resume]
+    \item 求过点 $(0, -4)$ 且与曲线 $y = x^2$ 相切的直线方程。
+\end{enumerate}
+
+\section{单调性与极值}
+\subsection{求单调区间与极值}
+\begin{enumerate}[label=\arabic*., resume]
+    \item 已知函数 $f(x) = x^3 - 3x^2 + 1$。
+    \begin{enumerate}
+        \item 求 $f(x)$ 的单调递增区间和单调递减区间；
+        \item 求 $f(x)$ 的极值。
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{含参函数的单调性讨论}
+\begin{enumerate}[label=\arabic*., resume]
+    \item 已知函数 $f(x) = \frac{1}{3}x^3 - ax^2 + 3x + 1$，其中 $a \in \mathbb{R}$。
+    \begin{enumerate}
+        \item 当 $a=2$ 时，求 $f(x)$ 的单调区间；
+        \item 若 $f(x)$ 在 $\mathbb{R}$ 上单调递增，求 $a$ 的取值范围。
+    \end{enumerate}
+\end{enumerate}
+
+\section{最值问题}
+\subsection{闭区间上的最值}
+\begin{enumerate}[label=\arabic*., resume]
+    \item 求函数 $f(x) = x^3 - 6x^2 + 9x + 2$ 在区间 $[-1, 4]$ 上的最大值与最小值。
+\end{enumerate}
+
+\subsection{实际优化问题}
+\begin{enumerate}[label=\arabic*., resume]
+    \item 用一块长为 $8$ 米，宽为 $5$ 米的矩形铁皮，在四个角剪去四个相同的小正方形，然后折成一个无盖长方体容器。问剪去的小正方形边长为多少时，容器的容积最大？最大容积是多少？
+\end{enumerate}
+
+\section*{参考答案与解题思路}
+
+\subsection*{1. 切线方程（已知切点）}
+\textbf{思路：} 切点已知时，切线斜率 $k = f'(x_0)$，再用点斜式写出方程。
+
+\textbf{解答：}
+$$f(x) = x^3 - 2x^2 + 1,$$
+$$f'(x) = 3x^2 - 4x.$$
+在 $x=1$ 处：
+$$f'(1) = 3 \times 1^2 - 4 \times 1 = -1.$$
+切点 $(1,0)$，斜率 $k = -1$，切线方程为：
+$$y - 0 = -1 \cdot (x - 1),$$
+即
+$$y = -x + 1.$$
+\begin{quote}
+    \textbf{易错点：} 将点坐标代入 $f(x)$ 验证是否在曲线上，若不在则需设切点。
+\end{quote}
+
+\subsection*{2. 切线方程（过曲线外一点）}
+\textbf{思路：} 设切点为 $(x_0, x_0^2)$，利用导数得斜率 $k = 2x_0$，再根据切点与点 $(0,-4)$ 的连线斜率等于 $2x_0$ 列方程。
+
+\textbf{解答：}
+设切点为 $(x_0, x_0^2)$，则切线斜率 $k = f'(x_0) = 2x_0$。
+切线过 $(0,-4)$ 和 $(x_0, x_0^2)$，斜率也可表示为：
+$$\frac{x_0^2 - (-4)}{x_0 - 0} = \frac{x_0^2 + 4}{x_0}.$$
+令两者相等：
+$$\frac{x_0^2 + 4}{x_0} = 2x_0.$$
+两边乘以 $x_0$（$x_0 \neq 0$）：
+$$x_0^2 + 4 = 2x_0^2,$$
+$$x_0^2 = 4 \Rightarrow x_0 = \pm 2.$$
+当 $x_0 = 2$ 时，切点 $(2,4)$，斜率 $k=4$，切线方程：
+$$y - 4 = 4(x - 2) \Rightarrow y = 4x - 4.$$
+当 $x_0 = -2$ 时，切点 $(-2,4)$，斜率 $k = -4$，切线方程：
+$$y - 4 = -4(x + 2) \Rightarrow y = -4x - 4.$$
+\textbf{答案：} $y = 4x - 4$ 或 $y = -4x - 4$。
+
+\subsection*{3. 单调区间与极值}
+\textbf{思路：} 求导，解 $f'(x) = 0$ 得临界点，列表判断符号。
+
+\textbf{解答：}
+$$f(x) = x^3 - 3x^2 + 1,$$
+$$f'(x) = 3x^2 - 6x = 3x(x - 2).$$
+令 $f'(x) = 0$，得 $x = 0$ 或 $x = 2$。
+
+列表：
+\begin{itemize}
+    \item 区间 $(-\infty, 0)$：$f'(x)>0$，$f(x)$ 递增。
+    \item 点 $0$：$f'(x)=0$，对应极大值。
+    \item 区间 $(0, 2)$：$f'(x)<0$，$f(x)$ 递减。
+    \item 点 $2$：$f'(x)=0$，对应极小值。
+    \item 区间 $(2, +\infty)$：$f'(x)>0$，$f(x)$ 递增。
+\end{itemize}
+(1) 递增区间：$(-\infty, 0)$ 和 $(2, +\infty)$；递减区间：$(0, 2)$。
+
+(2) 极大值 $f(0) = 1$；极小值 $f(2) = 8 - 12 + 1 = -3$。
+
+\textbf{答案：} 递增区间 $(-\infty,0)$、$(2,+\infty)$；递减区间 $(0,2)$；极大值 $1$，极小值 $-3$。
+
+\subsection*{4. 含参函数的单调性讨论}
+\textbf{思路：} 先求导，根据导数符号讨论参数范围。
+
+\textbf{解答：}
+$$f(x) = \frac{1}{3}x^3 - a x^2 + 3x + 1,$$
+$$f'(x) = x^2 - 2a x + 3.$$
+
+(1) 当 $a=2$ 时，$f'(x) = x^2 - 4x + 3 = (x-1)(x-3)$。
+令 $f'(x) > 0$，得 $x < 1$ 或 $x > 3$；$f'(x) < 0$，得 $1 < x < 3$。
+所以递增区间：$(-\infty, 1)$、$(3, +\infty)$；递减区间：$(1, 3)$。
+
+(2) $f(x)$ 在 $\mathbb{R}$ 上单调递增 $\iff$ $f'(x) \ge 0$ 恒成立（且不在任何区间恒为0）。
+$f'(x) = x^2 - 2a x + 3$ 是开口向上的二次函数，其最小值在 $x = a$ 处，最小值为 $f'(a) = a^2 - 2a^2 + 3 = -a^2 + 3$。
+要求 $f'(x) \ge 0$ 恒成立 $\iff$ 最小值 $\ge 0$，即
+$$-a^2 + 3 \ge 0 \Rightarrow a^2 \le 3 \Rightarrow -\sqrt{3} \le a \le \sqrt{3}.$$
+\textbf{答案：} $a \in [-\sqrt{3}, \sqrt{3}]$。
+
+\subsection*{5. 闭区间上的最值}
+\textbf{思路：} 求导找临界点，计算端点值与临界点值，比较得最值。
+
+\textbf{解答：}
+$$f(x) = x^3 - 6x^2 + 9x + 2,$$
+$$f'(x) = 3x^2 - 12x + 9 = 3(x-1)(x-3).$$
+令 $f'(x) = 0$，得 $x = 1$ 或 $x = 3$（均在 $[-1,4]$ 内）。
+
+计算函数值：
+$$f(-1) = -1 - 6 - 9 + 2 = -14,$$
+$$f(1) = 1 - 6 + 9 + 2 = 6,$$
+$$f(3) = 27 - 54 + 27 + 2 = 2,$$
+$$f(4) = 64 - 96 + 36 + 2 = 6.$$
+比较得：最大值 $6$（在 $x=1$ 和 $x=4$ 处），最小值 $-14$（在 $x=-1$ 处）。
+
+\textbf{答案：} 最大值 $6$，最小值 $-14$。
+
+\subsection*{6. 实际优化问题}
+\textbf{思路：} 建立容积函数，利用导数求最值。
+
+\textbf{解答：}
+设剪去的小正方形边长为 $x$ 米（$0 < x < 2.5$，因为宽的一半为2.5）。
+折后长方体：
+\begin{itemize}
+    \item 长：$8 - 2x$，
+    \item 宽：$5 - 2x$，
+    \item 高：$x$。
+\end{itemize}
+容积：
+$$V(x) = (8 - 2x)(5 - 2x) \cdot x = 4x^3 - 26x^2 + 40x.$$
+求导：
+$$V'(x) = 12x^2 - 52x + 40 = 4(3x^2 - 13x + 10).$$
+令 $V'(x) = 0$，解 $3x^2 - 13x + 10 = 0$：
+$$x = \frac{13 \pm \sqrt{169 - 120}}{6} = \frac{13 \pm 7}{6},$$
+得 $x = \frac{20}{6} = \frac{10}{3} \approx 3.33$（舍去，超过2.5）或 $x = \frac{6}{6} = 1$。
+
+检查边界：$x \to 0^+$ 时 $V \to 0$，$x = 2.5$ 时 $V=0$，$x=1$ 在区间内。
+计算 $V(1) = (8-2)(5-2) \times 1 = 6 \times 3 = 18$。
+
+\textbf{答案：} 剪去边长为 $1$ 米时，最大容积为 $18$ 立方米。
+
+\section*{使用建议}
+\begin{itemize}
+    \item 这套题目可以作为\textbf{基础知识练习之后}的\textbf{第二阶段训练}，重点培养学生“将导数作为工具”的能力。
+    \item 若时间有限，可优先完成\textbf{切线问题（1、2）}和\textbf{单调性与极值（3、4）}，这两类是高考文科导数题的绝对核心。
+    \item 第6题是实际应用题，可帮助学生体会导数在优化问题中的价值，也是高考可能出现的题型。
+\end{itemize}
+
+如果需要，还可以继续补充：
+\begin{itemize}
+    \item 导数与函数图像的关系（如已知导函数图像推断原函数特征）
+    \item 导数与不等式证明（如利用单调性证明不等式）
+    \item 更复杂的含参讨论（如参数在二次项或分母中）
+\end{itemize}
+你可以根据自身进度灵活选用。
+
+\end{document}

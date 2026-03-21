@@ -1,0 +1,249 @@
+\documentclass[10pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1.5cm}
+\usepackage{enumitem}
+
+\title{导数入门·附录}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+亲爱的同学，这份附录是为那些学有余力、希望进一步理解导数背后原理的同学准备的。内容稍深，但我们会尽量用直观的方式呈现。你可以根据自己的兴趣和时间选择阅读。
+
+\section{极限中高阶小量的严格说明}
+
+在正文中我们提到，在极限过程中，像 $(\Delta x)^2$ 这样的“高阶小量”可以忽略。这里我们给出更精确的描述。
+
+\subsection{无穷小的阶}
+
+如果当 $\Delta x \to 0$ 时，$\alpha$ 和 $\beta$ 都趋于 0，我们称它们为无穷小量。如果 $\frac{\alpha}{\beta} \to 0$，则称 $\alpha$ 是比 $\beta$ \textbf{更高阶的无穷小}，记作 $\alpha = o(\beta)$。
+
+例如：
+\begin{itemize}
+    \item $\Delta x$ 是一阶无穷小。
+    \item $(\Delta x)^2$ 是二阶无穷小，因为 $\frac{(\Delta x)^2}{\Delta x} = \Delta x \to 0$，所以 $(\Delta x)^2 = o(\Delta x)$。
+    \item 类似地，$(\Delta x)^3$ 是三阶无穷小，等等。
+\end{itemize}
+
+\subsection{为什么高阶小量可以忽略？}
+
+在求导数时，我们考虑极限
+$$
+\lim_{\Delta x \to 0} \frac{f(x+\Delta x)-f(x)}{\Delta x}.
+$$
+分子中的主要部分通常是 $\Delta x$ 的线性项，而高阶项（如 $(\Delta x)^2$）除以 $\Delta x$ 后仍趋于 0，因此在极限中不贡献任何值。
+
+例如，对于 $f(x)=x^2$：
+$$
+f(x+\Delta x)-f(x) = 2x\Delta x + (\Delta x)^2.
+$$
+其中 $2x\Delta x$ 是 $\Delta x$ 的一阶项，$(\Delta x)^2$ 是二阶项。除以 $\Delta x$ 得 $2x + \Delta x$，取极限后 $\Delta x \to 0$，只剩下 $2x$。这正是高阶小量被忽略的过程。
+
+\begin{quote}
+    \textbf{结论：} 如果 $f(x+\Delta x)-f(x) = A\Delta x + o(\Delta x)$（即线性主部加上高阶小量），那么导数就是 $A$。
+\end{quote}
+
+\section{重要极限的直观证明}
+
+在正文中我们直接给出了两个重要极限，这里给出它们的直观（几何）证明，帮助你建立信任感。
+
+\subsection{$\displaystyle \lim_{\theta \to 0} \frac{\sin\theta}{\theta} = 1$}
+
+考虑单位圆（半径为 1），圆心角 $\theta$（弧度制）对应的扇形。在单位圆中，我们可以比较三个面积：
+\begin{itemize}
+    \item 角 $\theta$ 对应的扇形面积 = $\frac{1}{2}\theta$，
+    \item 三角形 $OAB$（其中 $A$ 在圆上，$B$ 是 $A$ 在 $x$ 轴上的投影）的面积 = $\frac{1}{2}\sin\theta \cos\theta$，
+    \item 另一个更大的三角形 $OAC$（$C$ 是过 $A$ 的切线与 $x$ 轴的交点）的面积 = $\frac{1}{2}\tan\theta$。
+\end{itemize}
+通过面积比较可以得到 $\sin\theta < \theta < \tan\theta$，然后除以 $\sin\theta$ 得到 $1 < \frac{\theta}{\sin\theta} < \frac{1}{\cos\theta}$，取倒数得 $\cos\theta < \frac{\sin\theta}{\theta} < 1$。当 $\theta \to 0$ 时，$\cos\theta \to 1$，由夹逼定理得 $\frac{\sin\theta}{\theta} \to 1$。
+
+\subsection{$\displaystyle \lim_{\theta \to 0} \frac{1-\cos\theta}{\theta} = 0$}
+
+利用三角恒等式 $1-\cos\theta = 2\sin^2\frac{\theta}{2}$，则
+$$
+\frac{1-\cos\theta}{\theta} = \frac{2\sin^2\frac{\theta}{2}}{\theta} = \frac{\sin\frac{\theta}{2}}{\frac{\theta}{2}} \cdot \sin\frac{\theta}{2}.
+$$
+当 $\theta \to 0$ 时，$\frac{\theta}{2} \to 0$，由第一个极限知 $\frac{\sin\frac{\theta}{2}}{\frac{\theta}{2}} \to 1$，而 $\sin\frac{\theta}{2} \to 0$，因此乘积趋于 0。
+
+\subsection{$\displaystyle \lim_{t \to 0} \frac{\ln(1+t)}{t} = 1$ 和 $\displaystyle \lim_{t \to 0} \frac{e^t - 1}{t} = 1$}
+
+这两个极限与自然常数 $e$ 的定义紧密相关。回忆 $e = \lim_{n \to \infty} (1+\frac{1}{n})^n$。令 $t = \frac{1}{n}$，则当 $n \to \infty$ 时 $t \to 0^+$，且 $e = \lim_{t \to 0^+} (1+t)^{1/t}$。取自然对数得
+$$
+\ln e = 1 = \lim_{t \to 0^+} \frac{\ln(1+t)}{t}.
+$$
+对于 $t \to 0^-$ 也可类似证明（可用 $t = -\frac{1}{n+1}$ 等技巧），因此 $\lim_{t \to 0} \frac{\ln(1+t)}{t} = 1$。
+
+第二个极限可由第一个通过换元得到：令 $u = e^t - 1$，则 $t = \ln(1+u)$，当 $t \to 0$ 时 $u \to 0$，且
+$$
+\frac{e^t - 1}{t} = \frac{u}{\ln(1+u)} = \frac{1}{\frac{\ln(1+u)}{u}} \to 1.
+$$
+
+\section{求导法则的严格证明}
+
+这里我们给出乘积法则、商法则和链式法则的严格推导，均基于导数的定义和极限运算法则。
+
+\subsection{乘积法则的证明}
+
+设 $f(x) = u(x)v(x)$，其中 $u,v$ 在 $x$ 处可导。由定义：
+$$
+f'(x) = \lim_{\Delta x \to 0} \frac{u(x+\Delta x)v(x+\Delta x) - u(x)v(x)}{\Delta x}.
+$$
+在分子中巧妙地加上一项再减去一项 $u(x)v(x+\Delta x)$：
+$$
+\begin{aligned}
+& u(x+\Delta x)v(x+\Delta x) - u(x)v(x) \\
+&= u(x+\Delta x)v(x+\Delta x) - u(x)v(x+\Delta x) + u(x)v(x+\Delta x) - u(x)v(x) \\
+&= [u(x+\Delta x)-u(x)]v(x+\Delta x) + u(x)[v(x+\Delta x)-v(x)].
+\end{aligned}
+$$
+因此
+$$
+f'(x) = \lim_{\Delta x \to 0} \left( \frac{u(x+\Delta x)-u(x)}{\Delta x} v(x+\Delta x) + u(x) \frac{v(x+\Delta x)-v(x)}{\Delta x} \right).
+$$
+由极限运算法则（和的极限等于极限的和，积的极限等于极限的积），以及 $v$ 在 $x$ 处连续（可导必连续），有
+$$
+\begin{aligned}
+f'(x) &= \left( \lim_{\Delta x \to 0} \frac{u(x+\Delta x)-u(x)}{\Delta x} \right) \left( \lim_{\Delta x \to 0} v(x+\Delta x) \right) + u(x) \left( \lim_{\Delta x \to 0} \frac{v(x+\Delta x)-v(x)}{\Delta x} \right) \\
+&= u'(x) v(x) + u(x) v'(x).
+\end{aligned}
+$$
+
+\subsection{商法则的证明}
+
+设 $f(x) = \frac{u(x)}{v(x)}$，其中 $v(x) \neq 0$ 且 $u,v$ 可导。由定义：
+$$
+f'(x) = \lim_{\Delta x \to 0} \frac{ \frac{u(x+\Delta x)}{v(x+\Delta x)} - \frac{u(x)}{v(x)} }{\Delta x}.
+$$
+通分：
+$$
+= \lim_{\Delta x \to 0} \frac{ u(x+\Delta x)v(x) - u(x)v(x+\Delta x) }{ \Delta x \cdot v(x+\Delta x)v(x) }.
+$$
+分子加减一项 $u(x)v(x)$：
+$$
+\begin{aligned}
+u(x+\Delta x)v(x) - u(x)v(x+\Delta x) &= [u(x+\Delta x)v(x) - u(x)v(x)] + [u(x)v(x) - u(x)v(x+\Delta x)] \\
+&= [u(x+\Delta x)-u(x)]v(x) - u(x)[v(x+\Delta x)-v(x)].
+\end{aligned}
+$$
+因此
+$$
+f'(x) = \lim_{\Delta x \to 0} \frac{ [u(x+\Delta x)-u(x)]v(x) - u(x)[v(x+\Delta x)-v(x)] }{ \Delta x \cdot v(x+\Delta x)v(x) }.
+$$
+将分子中的两项分别除以 $\Delta x$：
+$$
+= \lim_{\Delta x \to 0} \frac{ \frac{u(x+\Delta x)-u(x)}{\Delta x} v(x) - u(x) \frac{v(x+\Delta x)-v(x)}{\Delta x} }{ v(x+\Delta x)v(x) }.
+$$
+由极限运算法则（商的极限），且分母极限为 $v(x)v(x) = [v(x)]^2$，分子的极限为 $u'(x)v(x) - u(x)v'(x)$，因此
+$$
+f'(x) = \frac{u'(x)v(x) - u(x)v'(x)}{[v(x)]^2}.
+$$
+
+\subsection{链式法则的证明}
+
+设 $y = f(g(x))$，令 $u = g(x)$。假设 $g$ 在 $x$ 处可导，$f$ 在 $u$ 处可导。我们想证明 $\frac{dy}{dx} = f'(u) g'(x)$。
+
+当 $\Delta x \neq 0$ 时，令 $\Delta u = g(x+\Delta x) - g(x)$，则 $\Delta y = f(u+\Delta u) - f(u)$。如果 $\Delta u \neq 0$，可以写成
+$$
+\frac{\Delta y}{\Delta x} = \frac{\Delta y}{\Delta u} \cdot \frac{\Delta u}{\Delta x}.
+$$
+当 $\Delta x \to 0$ 时，由 $g$ 的可导性知 $\Delta u \to 0$（因为 $g$ 连续）。如果存在某些 $\Delta x$ 使得 $\Delta u = 0$，上述写法会遇到分母为零的问题。为了严格处理，我们引入一个函数：
+$$
+\varphi(\Delta u) =
+\begin{cases}
+\frac{f(u+\Delta u)-f(u)}{\Delta u} - f'(u), & \Delta u \neq 0, \\
+0, & \Delta u = 0.
+\end{cases}
+$$
+由导数的定义，当 $\Delta u \to 0$ 时 $\varphi(\Delta u) \to 0$，即 $\varphi(\Delta u)$ 在 $\Delta u=0$ 处连续（值为 0）。于是我们有恒等式
+$$
+f(u+\Delta u)-f(u) = [f'(u) + \varphi(\Delta u)] \Delta u,
+$$
+对一切 $\Delta u$ 成立（包括 $\Delta u=0$ 时两边为 0）。因此
+$$
+\frac{\Delta y}{\Delta x} = [f'(u) + \varphi(\Delta u)] \frac{\Delta u}{\Delta x}.
+$$
+现在令 $\Delta x \to 0$，则 $\Delta u \to 0$，从而 $\varphi(\Delta u) \to 0$，而 $\frac{\Delta u}{\Delta x} \to g'(x)$，所以
+$$
+\frac{dy}{dx} = \lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = f'(u) g'(x) = f'(g(x)) g'(x).
+$$
+
+\section{自然常数 $e$ 的由来}
+
+自然常数 $e \approx 2.71828$ 是数学中最重要的常数之一。它的发现与复利计算有关。
+
+\subsection{复利问题}
+
+假设你有 1 元钱，存入银行，年利率 100\%（即利率为 1）。如果每年复利一次，一年后你的钱变成 $1 \times (1+1) = 2$ 元。
+
+如果半年复利一次，半年利率为 50\%，那么半年后变为 $1 \times (1+0.5) = 1.5$ 元，再过半年变为 $1.5 \times (1+0.5) = 2.25$ 元。公式：$(1+\frac{1}{2})^2 = 2.25$。
+
+如果每月复利一次，月利率 $\frac{1}{12}$，一年后为 $(1+\frac{1}{12})^{12} \approx 2.6130$。
+
+如果每天复利一次，为 $(1+\frac{1}{365})^{365} \approx 2.7146$。
+
+如果每秒复利一次，甚至连续复利，这个值会趋近于一个极限。数学家发现，当复利次数 $n$ 趋于无穷大时，
+$$
+\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n
+$$
+存在，这个极限就定义为 $e$。
+
+\subsection{$e$ 的其他性质}
+
+\begin{itemize}
+    \item $e$ 是无理数，也是超越数（不是任何整系数代数方程的根）。
+    \item 指数函数 $e^x$ 的导数等于自身，这使得它在微积分中占据核心地位。
+    \item 自然对数 $\ln x$ 是以 $e$ 为底的对数。
+\end{itemize}
+
+\section{导数在其他学科的应用举例}
+
+导数作为瞬时变化率，在自然科学、社会科学和工程领域有着广泛的应用。这里列举几个简单的例子，帮助你感受导数的威力。
+
+\subsection{物理学：速度和加速度}
+
+\begin{itemize}
+    \item 位置 $s(t)$ 对时间 $t$ 的导数就是速度 $v(t) = s'(t)$。
+    \item 速度对时间的导数就是加速度 $a(t) = v'(t) = s''(t)$。
+    \item 例如，自由落体运动 $s(t) = \frac{1}{2}gt^2$，则 $v(t) = gt$，$a(t) = g$（常数）。
+\end{itemize}
+
+\subsection{经济学：边际分析}
+
+\begin{itemize}
+    \item 在经济学中，成本函数 $C(x)$ 表示生产 $x$ 件产品的总成本。\textbf{边际成本}定义为 $C'(x)$，它表示生产第 $x+1$ 件产品时成本的增加量（近似）。企业常根据边际成本决定产量。
+    \item 类似地，边际收益 $R'(x)$ 表示多销售一件产品带来的收入增加。
+\end{itemize}
+
+\subsection{生物学：种群增长}
+
+\begin{itemize}
+    \item 如果某细菌种群数量 $N(t)$ 随时间增长，其增长率 $N'(t)$ 可以描述种群增长的速度。在理想条件下，种群可能呈指数增长 $N(t) = N_0 e^{kt}$，此时 $N'(t) = k N(t)$，即增长率与当前数量成正比。
+\end{itemize}
+
+\subsection{化学：反应速率}
+
+\begin{itemize}
+    \item 在化学反应中，反应物浓度 $C(t)$ 随时间变化，其导数 $C'(t)$ 表示反应速率。对于一级反应，$C'(t) = -k C(t)$，即反应速率与当前浓度成正比。
+\end{itemize}
+
+\subsection{地理学：坡度}
+
+\begin{itemize}
+    \item 地形图上的等高线可以看作函数 $z = f(x,y)$，其中 $z$ 是高度，$(x,y)$ 是平面坐标。沿某一方向的坡度就是该方向的方向导数（导数的推广）。爬山时最陡的方向就是梯度方向。
+\end{itemize}
+
+\subsection{计算机科学：图像处理}
+
+\begin{itemize}
+    \item 在图像处理中，导数（梯度）用于检测图像中的边缘。像素值变化剧烈的地方对应导数较大的点，这些通常是物体的轮廓。
+\end{itemize}
+
+\begin{quote}
+    \textbf{结语：} 这些例子表明，导数不仅仅是一个数学概念，更是理解变化世界的通用语言。希望这份附录能激发你对微积分更浓厚的兴趣！
+\end{quote}
+
+\end{document}

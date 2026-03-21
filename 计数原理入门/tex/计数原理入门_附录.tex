@@ -1,0 +1,99 @@
+\documentclass[10pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1.5cm}
+\usepackage{enumitem}
+
+\title{计数原理入门 $\cdot$ 附录}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{导言：为什么要学计数？}
+
+
+\section{排列数与组合数公式的推导}
+
+本附录用严格的逻辑步骤，从两个基本计数原理出发，推导出排列数 \(A_n^m\) 与组合数 \(C_n^m\) 的表达式。
+
+\subsection{排列数公式的推导}
+
+\textbf{问题}：从 \(n\) 个不同的元素中，取出 \(m\) 个（\(1 \le m \le n\)），并按一定顺序排成一列，共有多少种不同的排法？
+
+\textbf{推导}：我们依次确定每一个位置上的元素。
+
+\begin{itemize}
+\item 第 1 个位置：可以从 \(n\) 个元素中任选一个，有 \(n\) 种方法。
+\item 第 2 个位置：此时剩下 \(n-1\) 个元素，有 \(n-1\) 种方法。
+\item 第 3 个位置：剩下 \(n-2\) 个元素，有 \(n-2\) 种方法。
+\item ……
+\item 第 \(m\) 个位置：前面已选走 \(m-1\) 个元素，剩下 \(n-(m-1) = n-m+1\) 个元素，有 \(n-m+1\) 种方法。
+\end{itemize}
+
+根据\textbf{分步乘法计数原理}，完成这 \(m\) 个步骤的总方法数为
+\[
+A_n^m = n \times (n-1) \times (n-2) \times \dots \times (n-m+1).
+\]
+
+\textbf{引入阶乘}：注意到
+\[
+n! = n \times (n-1) \times \cdots \times 2 \times 1,
+\]
+而
+\[
+(n-m)! = (n-m) \times (n-m-1) \times \cdots \times 2 \times 1.
+\]
+因此
+\[
+\frac{n!}{(n-m)!} = \frac{n \times (n-1) \times \cdots \times (n-m+1) \times (n-m)!}{(n-m)!} = n \times (n-1) \times \cdots \times (n-m+1).
+\]
+于是
+\[
+A_n^m = \frac{n!}{(n-m)!}.
+\]
+特别地，当 \(m=n\) 时，\(A_n^n = n!\)（全排列）。当 \(m=0\) 时，规定 \(A_n^0 = 1\)。
+
+\subsection{组合数公式的推导}
+
+\textbf{问题}：从 \(n\) 个不同元素中取出 \(m\) 个（\(0 \le m \le n\)），\textbf{不考虑顺序}，只作为一组，共有多少种不同的取法？
+
+\textbf{推导思路}：先按顺序取（排列），再消除顺序带来的重复。
+
+\begin{enumerate}
+\item \textbf{先计算排列数}：若考虑顺序，则从 \(n\) 个元素中取 \(m\) 个排成一列，有 \(A_n^m\) 种方法。
+\item \textbf{观察重复关系}：对于任意一个选出的 \textbf{组合}（即一组 \(m\) 个元素），将它们进行全排列，可以得到 \(m!\) 种不同的排列。也就是说，这 \(m!\) 个排列对应\textbf{同一个组合}。
+\item \textbf{建立等式}：所有排列按它们对应的组合分组，每组恰好有 \(m!\) 个排列。因此
+   \[
+   A_n^m = C_n^m \times m!.
+   \]
+\item \textbf{解出组合数}：
+   \[
+   C_n^m = \frac{A_n^m}{m!} = \frac{n(n-1)\cdots(n-m+1)}{m!}.
+   \]
+   用阶乘表示：
+   \[
+   C_n^m = \frac{n!}{m!\,(n-m)!}.
+   \]
+\end{enumerate}
+
+\textbf{边界情况}：当 \(m=0\) 时，\(C_n^0 = 1\)（空组合）；当 \(m=n\) 时，\(C_n^n = 1\)（全取）。公式依然成立，因为 \(0!=1\)。
+
+\subsection{为什么组合数公式中要除以 \(m!\)？}
+
+本质原因：组合关心的是“哪些元素被选中”，不关心“被选中的顺序”。而排列的计数中，同一个元素集合的不同顺序被算作不同的结果。
+每组 \(m\) 个元素的所有 \(m!\) 种顺序在排列中都被分别计数，因此在从排列数得到组合数时，需要除以 \(m!\) 以消除顺序的差异。
+
+这一思想称为 \textbf{“先选后排”的逆过程}——实际上我们通常用组合数先选出元素，再乘以 \(m!\) 得到排列数：
+\[
+A_n^m = C_n^m \times m!.
+\]
+本附录的推导正是从这一等式出发求解 \(C_n^m\)。
+
+\begin{quote}
+\textbf{附录小结}：以上推导仅用到乘法原理和阶乘定义，未引入新的假设。建议学生亲手用小的 \(n,m\)（例如 \(n=4,m=2\)）代入公式验证，以加深理解。
+\end{quote}
+
+\end{document}
